@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 module.exports = appInfo => {
   const config = exports = {}
 
@@ -29,7 +30,7 @@ module.exports = appInfo => {
   }
 
   config.mongoose = {
-    url: 'mongodb://127.0.0.1:27017/egg_x',
+    url: 'mongodb://127.0.0.1:27017/egg_db',
     options: {
       useMongoClient: true,
       autoReconnect: true,
@@ -43,6 +44,9 @@ module.exports = appInfo => {
     enable: true, // default is false
     match: '/jwt', // optional
   }
-
+  config.cors = {
+    allowMethods: 'GET,HEAD,PUT,DELETE,PATCH,OPTIONS',
+    credentials: true,
+  }
   return config
 }

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const Controller = require('egg').Controller
 
 class RoleController extends Controller {

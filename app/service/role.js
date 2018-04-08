@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const Service = require('egg').Service
 
 class RoleService extends Service {

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // had enabled by egg
 // exports.static = true;
 exports.validate = {

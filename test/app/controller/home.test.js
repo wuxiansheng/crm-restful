@@ -1,21 +1,25 @@
-'use strict';
+/* eslint-disable no-undef */
+'use strict'
 
-const { app, assert } = require('egg-mock/bootstrap');
+const { app, assert,mock } = require('egg-mock/bootstrap')
 
 describe('test/app/controller/home.test.js', () => {
-
-  it('should assert', function* () {
-    const pkg = require('../../../package.json');
-    assert(app.config.keys.startsWith(pkg.name));
-
-    // const ctx = app.mockContext({});
-    // yield ctx.service.xx();
-  });
-
-  it('should GET /', () => {
-    return app.httpRequest()
-      .get('/')
-      .expect('hi, egg')
-      .expect(200);
-  });
-});
+  describe('Get/', () => {
+    it('should status 200 amd get the body', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(200)
+        .expect('hello world')
+    })
+    it('should GET /', async () => {
+      await app.httpRequest()
+        .get('/')
+        .expect(200)
+        .expect('hello world')
+      const result = await  app.httpRequest()
+        .get('/')
+        .expect(200)
+        .expect('hello world')
+    })
+  })
+})

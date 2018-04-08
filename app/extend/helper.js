@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const moment = require('moment')
 
 // 格式化时间

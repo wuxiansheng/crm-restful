@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const fs = require('fs')
 const path = require('path')
 const awaitWriteStream = require('await-stream-ready').write
