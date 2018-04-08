@@ -1,78 +1,72 @@
 const Controller = require('egg').Controller
-
-class ArticleController extends Controller {
+class RecordController extends Controller {
   constructor(ctx) {
     super(ctx)
-
-    this.ArticleCreate = {
-      title: { type: 'string'},
-      intro: {type: 'string'},
-      content:{type: 'string'}
+    this.RecordCreate = {
+      content: {type: 'string'},
+      type: {type: 'string'}
     }
-
   }
-
-  // 创建文章
+  // 创建客户
   async create() {
     const { ctx, service } = this
     // 校验参数
-    ctx.validate(this.ArticleCreate)
+    ctx.validate(this.RecordCreate)
     // 组装参数
     const payload = ctx.request.body || {}
     // 调用 Service 进行业务处理
-    const res = await service.article.create(payload)
+    const res = await service.record.create(payload)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx, res})
   }
 
-  // 删除单个文章
+  // 删除单个客户信息
   async destroy() {
     const { ctx, service } = this
     // 校验参数
     const { id } = ctx.params
     // 调用 Service 进行业务处理
-    await service.article.destroy(id)
+    await service.record.destroy(id)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx})
   }
 
-  // 修改文章
+  // 修改顾客信息
   async update() {
     const { ctx, service } = this
     // 校验参数
-    ctx.validate(this.ArticleCreate)
+    ctx.validate(this.RecordCreate)
     // 组装参数
     const { id } = ctx.params
     const payload = ctx.request.body || {}
     // 调用 Service 进行业务处理
-    await service.article.update(id, payload)
+    await service.record.update(id, payload)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx})
   }
 
-  // 获取单个文章
+  // 获取单个客户信息
   async show() {
     const { ctx, service } = this
     // 组装参数
     const { id } = ctx.params
     // 调用 Service 进行业务处理
-    const res = await service.article.show(id)
+    const res = await service.record.show(id)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx, res})
   }
 
-  // 获取所有文章(分页/模糊)
+  // 获取所有顾客信息(分页/模糊)
   async index() {
     const { ctx, service } = this
     // 组装参数
     const payload = ctx.query
     // 调用 Service 进行业务处理
-    const res = await service.role.index(payload)
+    const res = await service.record.index(payload)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx, res})
   }
-
-  // 删除所选文章(条件id[])
+  // 删除所选顾客(条件id[])
   async removes() {
     const { ctx, service } = this
     // 组装参数
@@ -80,11 +74,10 @@ class ArticleController extends Controller {
     const { id } = ctx.request.body // {id: "5a452a44ab122b16a0231b42,5a452a3bab122b16a0231b41"}
     const payload = id.split(',') || []
     // 调用 Service 进行业务处理
-    const result = await service.role.removes(payload)
+    const result = await service.record.removes(payload)
     // 设置响应内容和响应状态码
     ctx.helper.success({ctx})
   }
-
 }
 
-module.exports =ArticleController
+module.exports = RecordController

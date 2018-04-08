@@ -6,14 +6,18 @@
 module.exports = app => {
   const { router, controller } = app
   router.get('/', controller.home.index)
-  
+
+
+
+
+
   // role
   // router.post('/api/role', controller.role.create)
   // router.delete('/api/role/:id', controller.role.destroy)
   // router.put('/api/role/:id', controller.role.update)
   // router.get('/api/role/:id', controller.role.show)
   // router.get('/api/role', controller.role.index)
-  router.delete('/api/role', controller.role.removes)
+  //router.delete('/api/role', controller.role.removes)
   router.resources('role', '/api/role', controller.role)
 
   // userAccess
@@ -30,6 +34,8 @@ module.exports = app => {
   // router.get('/api/user', controller.user.index)
   router.delete('/api/user', controller.user.removes)
   router.resources('user', '/api/user', controller.user)
+  router.resources('customer', '/api/customer', controller.customer)
+  router.resources('record', '/api/record', controller.record)
 
   // upload
   router.post('/api/upload', controller.upload.create)

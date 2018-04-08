@@ -1,38 +1,37 @@
 const Service = require('egg').Service
-
-class ArticleService extends Service {
+class RecordService extends Service {
   // create======================================================================================================>
   async create(payload) {
-    return this.ctx.model.Article.create(payload)
+    return this.ctx.model.Record.create(payload)
   }
 
   // destroy======================================================================================================>
   async destroy(_id) {
     const { ctx, service } = this
-    const article = await ctx.service.article.find(_id)
-    if (!article) {
-      ctx.throw(404, '文章不存在')
+    const record = await ctx.service.record.find(_id)
+    if (!record) {
+      ctx.throw(404, 'record not found')
     }
-    return ctx.model.Article.findByIdAndRemove(_id)
+    return ctx.model.Record.findByIdAndRemove(_id)
   }
 
   // update======================================================================================================>
   async update(_id, payload) {
     const { ctx, service } = this
-    const article = await ctx.service.article.find(_id)
-    if (!article) {
-      ctx.throw(404, '文章不存在')
+    const record = await ctx.service.record.find(_id)
+    if (!record) {
+      ctx.throw(404, 'role not found')
     }
-    return ctx.model.Article.findByIdAndUpdate(_id, payload)
+    return ctx.model.Record.findByIdAndUpdate(_id, payload)
   }
 
   // show======================================================================================================>
   async show(_id) {
-    const article = await this.ctx.service.article.find(_id)
-    if (!article) {
-      this.ctx.throw(404, '文章不存在')
+    const record = await this.ctx.service.record.find(_id)
+    if (!record) {
+      this.ctx.throw(404, 'record not found')
     }
-    return this.ctx.model.Article.findById(_id)
+    return this.ctx.model.Record.findById(_id)
   }
 
   // index======================================================================================================>
@@ -43,19 +42,19 @@ class ArticleService extends Service {
     let skip = ((Number(currentPage)) - 1) * Number(pageSize || 10)
     if(isPaging) {
       if(search) {
-        res = await this.ctx.model.Article.find({name: { $regex: search } }).skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
+        res = await this.ctx.model.Record.find({name: { $regex: search } }).skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
         count = res.length
       } else {
-        res = await this.ctx.model.Article.find({}).skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
-        count = await this.ctx.model.Article.count({}).exec()
+        res = await this.ctx.model.Record.find({}).skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
+        count = await this.ctx.model.Record.count({}).exec()
       }
     } else {
       if(search) {
-        res = await this.ctx.model.Article.find({name: { $regex: search } }).sort({ createdAt: -1 }).exec()
+        res = await this.ctx.model.Record.find({name: { $regex: search } }).sort({ createdAt: -1 }).exec()
         count = res.length
       } else {
-        res = await this.ctx.model.Article.find({}).sort({ createdAt: -1 }).exec()
-        count = await this.ctx.model.Article.count({}).exec()
+        res = await this.ctx.model.Record.find({}).sort({ createdAt: -1 }).exec()
+        count = await this.ctx.model.Record.count({}).exec()
       }
     }
     // 整理数据源 -> Ant Design Pro
@@ -65,20 +64,16 @@ class ArticleService extends Service {
       jsonObject.createdAt = this.ctx.helper.formatTime(e.createdAt)
       return jsonObject
     })
-
     return { count: count, list: data, pageSize: Number(pageSize), currentPage: Number(currentPage) }
   }
-
   // removes======================================================================================================>
   async removes(values) {
-    return this.ctx.model.Article.remove({ _id: { $in: values } })
+    return this.ctx.model.Record.remove({ _id: { $in: values } })
   }
-
   // Commons======================================================================================================>
   async find(id) {
-    return this.ctx.model.Article.findById(id)
+    return this.ctx.model.Record.findById(id)
   }
-
 }
 
-module.exports = ArticleService
+module.exports = RecordService

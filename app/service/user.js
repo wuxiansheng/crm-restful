@@ -7,7 +7,7 @@ class UserService extends Service {
     const { ctx, service } = this
     const role = await service.role.show(payload.role)
     if (!role) {
-      ctx.throw(404, 'role is not found')
+      ctx.throw(404, '权限错误')
     }
     payload.password = await this.ctx.genHash(payload.password)
     return ctx.model.User.create(payload)
