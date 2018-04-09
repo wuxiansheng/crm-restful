@@ -7,7 +7,5 @@ module.exports = app => {
     extra: {  type: String  },
     createdAt: { type: Date, default: Date.now }
   })
-
   return mongoose.model('Attachment', AttachmentSchema)
-
 }

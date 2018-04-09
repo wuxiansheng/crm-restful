@@ -11,7 +11,7 @@ module.exports = app => {
     company: {type: String},
     realName: { type: String },
     source: {type: String},
-    record: { type: mongoose.Schema.Types.ObjectId, ref: 'Record' },
+    record: { type: mongoose.Schema.Types.Array, ref: 'Record' },
     createdAt: { type: Date, default: Date.now }
   })
   return mongoose.model('Customer', CustomerSchema)
