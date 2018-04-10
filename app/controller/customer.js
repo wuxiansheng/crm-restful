@@ -3,8 +3,16 @@ class CustomerController extends Controller {
   constructor(ctx) {
     super(ctx)
     this.CustomerCreate = {
-      username: { type: 'string'},
-      mobile: {type: 'string'}
+      nickname: { type: 'string', required: true },
+      username: { type: 'string' },
+      mobile: { type: 'string' },
+      age: { type: Number },
+      sex: { type: String },
+      birthday: { type: Date },
+      address: { type: String },
+      company: { type: String },
+      realName: { type: String },
+      source: { type: String },
     }
   }
   // 创建客户

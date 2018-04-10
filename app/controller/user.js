@@ -8,7 +8,9 @@ class UserController extends Controller {
     this.UserCreateTransfer = {
       mobile: {type: 'string', required: true, allowEmpty: false, format: /^[0-9]{11}$/},
       password: {type: 'password', required: true, allowEmpty: false, min: 6},
-      realName: {type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/}
+      realName: {type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/},
+      email: {type: 'string'},
+      
     }
 
     this.UserUpdateTransfer = {

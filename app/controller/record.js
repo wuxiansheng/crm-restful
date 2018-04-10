@@ -4,7 +4,8 @@ class RecordController extends Controller {
     super(ctx)
     this.RecordCreate = {
       content: {type: 'string'},
-      type: {type: 'string'}
+      type: {type: 'string'},
+      address: { type: String},
     }
   }
   // 创建客户
